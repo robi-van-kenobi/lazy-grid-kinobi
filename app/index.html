@@ -15,6 +15,11 @@
 	<div class="container" ng-controller="customerGridCtrl">
 		<h1>Customers</h1>
 		<p>Results: {{start}} - {{end}} / {{totalCount}}</p>
+		<select ng-model="itemCount">
+			<option value="10">10</option>
+			<option value="25">25</option>
+			<option value="50">50</option>
+		</select>
 		<table class="table">
 			<thead>
 				<tr>
@@ -40,7 +45,7 @@
 
 		<ul class="pagination">
 			<li><a href="#">&laquo;</a></li>
-			<li ng-repeat="p in pages"><a href="#" ng-click="loadPage(p + 1)" ng-bind="p + 1"></a></li>
+			<li ng-repeat="p in pages" ng-class="{active: page == p + 1}"><a href="#" ng-click="loadPage(p + 1)" ng-bind="p + 1"></a></li>
 			<li><a href="#">&raquo;</a></li>
 		</ul>
 	</div>

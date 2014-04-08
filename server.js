@@ -4,12 +4,17 @@ var url = require('url');
 
 var app = express();
 
+var totalCount = 201;
+
 app.get('/customers', function(req, res) {
+	var itemsPerPage = req.query.itemCount;
+	var page = req.query.page;
+	var count = page * itemsPerPage < totalCount ? itemsPerPage : totalCount % itemsPerPage;  
 	res.send({
-		totalCount: 201,
-		customers: _.range(50).map(function(idx) {
+		totalCount: totalCount,
+		customers: _.range(count).map(function(idx) {
 			return {
-				id: (req.query.page - 1) * 50 + idx + 1,
+				id: (page - 1) * itemsPerPage + idx + 1,
 				firstname: 'Annakin',
 				lastname: 'Skywalker',
 				phone: '06215/32434235',
