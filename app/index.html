@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="libs/bootstrap/dist/css/bootstrap.min.css">
 <script src="libs/angular/angular.min.js"></script>
 <script src="libs/angular-resource/angular-resource.min.js"></script>
+<script src="libs/underscore/underscore.js"></script>
 <script src="scripts/main.js"></script>
 <script src="scripts/services/customer.js"></script>
 <script src="scripts/controllers/customerGridCtrl.js"></script>
@@ -13,9 +14,11 @@
 <body ng-app="grid">
 	<div class="container" ng-controller="customerGridCtrl">
 		<h1>Customers</h1>
+		<p>Results: {{start}} - {{end}} / {{totalCount}}</p>
 		<table class="table">
 			<thead>
 				<tr>
+					<th>ID</th>
 					<th>Firstname</th>
 					<th>Lastname</th>
 					<th>Phone</th>
@@ -25,6 +28,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="c in customers">
+					<td ng-bind="c.id"></td>
 					<td ng-bind="c.firstname"></td>
 					<td ng-bind="c.lastname"></td>
 					<td ng-bind="c.phone"></td>
@@ -36,11 +40,7 @@
 
 		<ul class="pagination">
 			<li><a href="#">&laquo;</a></li>
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
+			<li ng-repeat="p in pages"><a href="#" ng-click="loadPage(p + 1)" ng-bind="p + 1"></a></li>
 			<li><a href="#">&raquo;</a></li>
 		</ul>
 	</div>
