@@ -3,12 +3,16 @@
 <head>
 <title>Angular lazy grid demo</title>
 <link rel="stylesheet" type="text/css" href="libs/bootstrap/dist/css/bootstrap.min.css">
+<script src="libs/angular/angular.min.js"></script>
+<script src="libs/angular-resource/angular-resource.min.js"></script>
+<script src="scripts/main.js"></script>
+<script src="scripts/controllers/customerGridCtrl.js"></script>
 </head>
 
-<body>
+<body ng-app="grid">
 	<div class="container">
 		<h1>Customers</h1>
-		<table class="table">
+		<table class="table" ng-controller="customerGridCtrl">
 			<thead>
 				<tr>
 					<th>Firstname</th>
@@ -19,12 +23,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Annakin</td>
-					<td>Skywalker</td>
-					<td>06215/32434235</td>
-					<td>as@death-star.org</td>
-					<td>Tatooine</td>
+				<tr ng-repeat="c in customers">
+					<td ng-bind="c.firstname"></td>
+					<td ng-bind="c.lastname"></td>
+					<td ng-bind="c.phone"></td>
+					<td ng-bind="c.email"></td>
+					<td ng-bind="c.address"></td>
 				</tr>
 			</tbody>
 		</table>
