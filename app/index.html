@@ -6,13 +6,14 @@
 <script src="libs/angular/angular.min.js"></script>
 <script src="libs/angular-resource/angular-resource.min.js"></script>
 <script src="scripts/main.js"></script>
+<script src="scripts/services/customer.js"></script>
 <script src="scripts/controllers/customerGridCtrl.js"></script>
 </head>
 
 <body ng-app="grid">
-	<div class="container">
+	<div class="container" ng-controller="customerGridCtrl">
 		<h1>Customers</h1>
-		<table class="table" ng-controller="customerGridCtrl">
+		<table class="table">
 			<thead>
 				<tr>
 					<th>Firstname</th>
@@ -32,6 +33,16 @@
 				</tr>
 			</tbody>
 		</table>
+
+		<ul class="pagination">
+			<li><a href="#">&laquo;</a></li>
+			<li><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+			<li><a href="#">&raquo;</a></li>
+		</ul>
 	</div>
 </body>
 
