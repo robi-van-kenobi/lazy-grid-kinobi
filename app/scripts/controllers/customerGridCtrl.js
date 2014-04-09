@@ -18,6 +18,19 @@ angular.module('grid')
 			});
 		};
 		$scope.loadPage($scope.page);
+
+		$scope.edit = function(customer) {
+			$scope.editedCustomer = Customer.get({id:customer.id});
+		};
+
+		$scope.save = function (editedCustomer) {
+			$scope.editedCustomer = null;
+			editedCustomer.$save({id:editedCustomer.id}, function (updatedCustomer) {
+				console.log(_.findWhere($scope.customers, {id:updatedCustomer.id}));
+				_.extend(_.findWhere($scope.customers, {id:updatedCustomer.id}), updatedCustomer);
+			});
+		};
+		
 		$scope.$watch('itemCount', function() {
 			$scope.loadPage(1);
 		});

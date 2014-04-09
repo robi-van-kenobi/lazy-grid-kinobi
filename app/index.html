@@ -37,16 +37,32 @@
 					<th>Phone</th>
 					<th>E-Mail</th>
 					<th>Address</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="c in customers">
+				<tr ng-repeat-start="c in customers">
 					<td ng-bind="c.id"></td>
 					<td ng-bind="c.firstname"></td>
 					<td ng-bind="c.lastname"></td>
 					<td ng-bind="c.phone"></td>
 					<td ng-bind="c.email"></td>
 					<td ng-bind="c.address"></td>
+					<td><button class="btn btn-primary glyphicon glyphicon-edit" ng-click="edit(c)"/></td>
+				</tr>
+				<tr ng-repeat-end ng-if="editedCustomer.id == c.id">
+					<td colspan="6">
+						<form class="form-horizontal">
+							<input ng-model="editedCustomer.firstname"></input>
+							<input ng-model="editedCustomer.lastname"></input>
+							<input ng-model="editedCustomer.phone"></input>
+							<input ng-model="editedCustomer.email"></input>
+							<input ng-model="editedCustomer.address"></input>
+						</form>
+					</td>
+					<td>
+						<button class="btn btn-primary glyphicon glyphicon-ok" ng-click="save(editedCustomer)"/>
+					</td>
 				</tr>
 			</tbody>
 		</table>

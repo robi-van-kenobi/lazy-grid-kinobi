@@ -24,6 +24,27 @@ app.get('/customers', function(req, res) {
 		})
 	});
 });
+app.get('/customers/:id', function(req, res) {
+	res.send({
+		id: Number(req.params.id),
+		firstname: 'Annakin',
+		lastname: 'Skywalker',
+		phone: '06215/32434235',
+		email: 'as@death-star.org',
+		address: 'Tatooine'
+	});
+});
+
+app.put('/customers/:id', function (req, res) {
+	res.send({
+		id: Number(req.params.id),
+		firstname: 'Annakin updated',
+		lastname: 'Skywalker updated',
+		phone: '06215/32434235',
+		email: 'as@death-star.org',
+		address: 'Tatooine'
+	});
+});
 
 app.get('/', function(req, res) {
 	res.sendfile('app/index.html');
