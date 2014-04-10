@@ -19,8 +19,13 @@ angular.module('grid')
 		};
 		$scope.loadPage($scope.page);
 
-		$scope.edit = function(customer) {
-			$scope.editedCustomer = Customer.get({id:customer.id});
+		$scope.editToggle = function(customer) {
+			if($scope.editedCustomer && $scope.editedCustomer.id === customer.id) {
+				$scope.editedCustomer = null;
+			}
+			else {
+				$scope.editedCustomer = Customer.get({id:customer.id});
+			}
 		};
 
 		$scope.save = function (editedCustomer) {
@@ -29,6 +34,10 @@ angular.module('grid')
 				console.log(_.findWhere($scope.customers, {id:updatedCustomer.id}));
 				_.extend(_.findWhere($scope.customers, {id:updatedCustomer.id}), updatedCustomer);
 			});
+		};
+
+		$scope.isEdited = function (customer) {
+			return $scope.editedCustomer && $scope.editedCustomer.id === customer.id
 		};
 		
 		$scope.$watch('itemCount', function() {
